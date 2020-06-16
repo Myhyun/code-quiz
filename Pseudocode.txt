@@ -1,0 +1,26 @@
+###Project Goals/Checklist
+
+Intro page must contain: View highscores tab, introduction to the quiz, start button, timer
+
+Start button
+    [create var button, add event listener with click function to start game, hide button once game starts]
+
+Timer starts and question is displayed after start button is clicked 
+    [create a function using setTimeout to start timer from 120->0 once start button is clicked, display time remaining on the side using .textContent]
+
+
+After question is answered another question appears, if question is answered incorrectly, timer goes down by 10 seconds
+    
+When all questions are answered or timer reaches 0 game ends
+    [Change to alternate end screen once all questions are answered or when secondsLeft === 0,]
+
+End screen is displayed with final score and box to input initials and save score
+    [Create an input box in order to get value of user input, then store user input with localStorage.setItem]
+
+Option to go back to the home page and clear the stored highscores
+    [Present redirect options using hrefs to inital home page/highscores page]
+
+At the end able to view previous scores
+    [Create a high scores page that stores the localStorage values]
+
+
