@@ -55,6 +55,7 @@ var ansA = 0;
 var ansB = 0;
 var ansC = 0;
 var quiz = 0;
+var userScore = 0
 
 
 
@@ -62,12 +63,9 @@ var timeElement = document.querySelector("#time");
 var secondsLeft = 120;
 
 
-
-
-
-
 setTime();
 startQuiz();
+
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
@@ -84,8 +82,7 @@ function setTime() {
 function startQuiz() {
     quiz = document.getElementById("quizQuestions");
     if(userPos >= myQuestions.length) {
-        quiz.innerHTML = "<h2> Test Over. </h2>";
-        return false;
+        showEndScreen();
     }
 
     document.getElementById("quizPos").innerHTML = "Question "+(userPos+1)+" of "+myQuestions.length;
@@ -96,14 +93,28 @@ function startQuiz() {
     ansC = myQuestions[userPos].C;
 
     quiz.innerHTML += "<h3>" +question+ "</h3>";
-    quiz.innerHTML += "<label> <input type ='radio' name='choices' value='A'> " + ansA + "</label><br>";
-    quiz.innerHTML += "<label> <input type ='radio' name='choices' value='B'> " + ansB + "</label><br>";
-    quiz.innerHTML += "<label> <input type ='radio' name='choices' value='C'> " + ansC + "</label><br>";
-    quiz.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+    quiz.innerHTML += "<label> <input type ='radio' name='possibleAns' value='A'> " + ansA + "</label><br>";
+    quiz.innerHTML += "<label> <input type ='radio' name='possibleAns' value='B'> " + ansB + "</label><br>";
+    quiz.innerHTML += "<label> <input type ='radio' name='possibleAns' value='C'> " + ansC + "</label><br>";
+    quiz.innerHTML += "<button onclick='checkAns()'>Submit Answer</button>";
 
 }
 
+function checkAns() {
+    possibleAns = document.getElementsByName("possibleAns");
+    for (var i = 0; i< possibleAns.length; i++) {
+        if(possibleAns[i].checked) {
+            userAns = possibleAns[i].value;
+        }
+    }
 
+    if (userAns == myQuestions[userPos].answer) {
+        userScore++;
+    }
+    userPos++;
+
+    startQuiz();
+}
 
 
 
